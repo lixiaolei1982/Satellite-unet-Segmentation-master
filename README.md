@@ -23,23 +23,39 @@ link：https://pan.baidu.com/s/1hMC3eQmJTnRotgnF_mTBwA 提取码：10me
 
 
 --Satellite-unet-Segmentation-master
+
    --data
+   
          :training original data
+         
    --test
+   
          :testing data
+         
    --unet
+   
          :gen_dataset.py
+         
          :unet_train.py
+         
          :unet_predict.py
+         
          :combind.py
+        
          --lib
+         
               :define_loss.py
+              
          --predict
+         
               :single class predict result
+              
          --final_result
+         
               :total class combind predict result
          
    --unet_train
+   
          :training data
 
 
