@@ -121,14 +121,14 @@ def unet():
     inputs = Input((3, img_w, img_h))
     x = inputs
     depth = 4
-    features = 32
+    features = 64
     skips = []
     for i in range(depth):
         x = Conv2D(features, (3, 3), activation='relu', padding='same',data_format='channels_first')(x)
         x = Dropout(0.2)(x)
         x = Conv2D(features, (3, 3), activation='relu', padding='same',data_format='channels_first')(x)
         skips.append(x)
-        x = MaxPooling2D((2, 2))(x)
+        x = MaxPooling2D((2, 2),data_format='channels_first')(x)
         features = features * 2
 
     x = Conv2D(features, (3, 3), activation='relu', padding='same',data_format='channels_first')(x)
@@ -137,7 +137,7 @@ def unet():
 
     for i in reversed(range(depth)):
         features = features // 2
-        x = UpSampling2D(size=(2, 2))(x)
+        x = UpSampling2D(size=(2, 2),data_format='channels_first')(x)
         x = concatenate([skips[i], x], axis=1)
         x = Conv2D(features, (3, 3), activation='relu', padding='same', data_format='channels_first')(x)
         x = Dropout(0.2)(x)
